@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Equipment Profi Search </title>
-    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
-  </head>
-  <body>
-<H1>Equipment Profi Search</H1>
-<script src="https://unpkg.com/fsm-shell"></script>
-<script src="helpers.js "></script>
-<script>
+<head>
+<meta charset="UTF-8" />
+<title>Equipment Profi Search</title>
+<link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+	<img width="5%"
+		src='https://chrisreisner.github.io/FSM_eq_search_extension/SAP_Icons_SVG_search.svg'>
+	<H1>Equipment Profi Search</H1>
+	<div>
+		<h2 class="fd-title fd-title--h2" id="header">No selected
+			activities</h2>
+	</div>
+	<div>
+      <div class="search" id="info">No query possible</h2>
+    </div>
+	<hr>
+	<div class="content" id="content">
+		No found contend
+		</div>
+	<hr>
+	<div class="debug" id="debug">
+		No found contend
+		</div>
+		
+	
+		
+		<script src="https://unpkg.com/fsm-shell"></script>
+		<script src="helpers.js "></script>
+		<script>
   const { ShellSdk, SHELL_EVENTS } = FSMShell;
 
       const updateUI = (text) =>
         (document.querySelectorAll('#info')[0].innerText = text);
-
+        const debugUI = (text) =>
+        (document.querySelectorAll('#debug')[0].innerText = text);
+        const initText = 'loading';
+        debugUi(initText);
+        updateUi(initText);
       try {
         const { ShellSdk, SHELL_EVENTS } = FSMShell;
         console.log('using ShellSdk version', ShellSdk.VERSION);
-
+        debugUi('using ShellSdk version', ShellSdk.VERSION);
+        updateUi(initText);
+        
+     // Display an error message if extension does not run within shell
         if (!ShellSdk.isInsideShell()) {
-          throw new Error('unable to reach shell eventAPI');
+          updateUI('Unable to reach shell eventAPI');
         }
+        if (!ShellSdk.isInsideShell()) {
+        	updateUi('unable to reach shell eventAPI');
+          throw new Error('unable to reach shell eventAPI');
+        } 
 
         const shellSdk = ShellSdk.init(parent, '*');
 
         // get context
         shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
-          clientIdentifier: 'fsm_equipmment_search_by_ecenta',
+          clientIdentifier: 'fsm_search_extension',
+          auth: {
+              response_type: 'token'  // request a user token within the context
+            }
         });
-
+        // Callback on fsm context response
         shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
           const {
             account,
@@ -40,12 +74,19 @@
             user,
             userId,
             selectedLocale,
+            auth
           } = JSON.parse(event);
           updateUI(`Hi ${user} / ${account} / ${company}!`);
         });
+        
+       
+
+        
+        
+        
       } catch (e) {
         updateUI(`Exception: ${e.message}`);
       }
     </script>
-  </body>
+</body>
 </html>

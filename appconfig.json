@@ -2,11 +2,10 @@
   "name": "FSM_search_extension",
   "provider": "ECENTA",
   "description": "Enhancement for searching equipments",   
-  "version": "0.0.1", 
-  "icon": "SAP_Icons_SVG_search.svg",
+  "version": "0.0.2", 
+  "icon": "https://chrisreisner.github.io/FSM_eq_search_extension/SAP_Icons_SVG_search.svg",
   "useShellSDK": "true",
-  
-  "dockerRegistry": "docker.io/ironman",
+   "dockerRegistry": "docker.io/ironman",
     "helmChartVersion": "1.0.0",
   
   "parameters": [
