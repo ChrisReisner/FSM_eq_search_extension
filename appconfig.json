@@ -1,0 +1,24 @@
+{
+  "name": "FSM_search_extension",
+  "provider": "ECENTA",
+  "description": "Enhancement for searching equipments",   
+  "version": "0.0.1", 
+  "icon": "SAP_Icons_SVG_search.svg",
+  "useShellSDK": "true",
+  
+  "dockerRegistry": "docker.io/ironman",
+    "helmChartVersion": "1.0.0",
+  
+  "parameters": [
+    {
+      "name": "token",      
+      "description": "",      
+      "required": false    
+    },    
+    {     
+      "name": "targetsystemurl",     
+      "description": "",     
+      "required": true 
+    }  
+  ]
+}

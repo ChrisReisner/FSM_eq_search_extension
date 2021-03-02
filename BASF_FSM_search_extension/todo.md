@@ -1,4 +1,0 @@
-# ToDO's
-
-- Exchange icon
-- ??

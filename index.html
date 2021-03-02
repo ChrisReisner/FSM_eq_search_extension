@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equipment Profi Search </title>
+    <link href="https://unpkg.com/fundamental-styles" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body>
+<H1>Equipment Profi Search</H1>
+<script src="https://unpkg.com/fsm-shell"></script>
+<script src="helpers.js "></script>
+<script>
+  const { ShellSdk, SHELL_EVENTS } = FSMShell;
+
+      const updateUI = (text) =>
+        (document.querySelectorAll('#info')[0].innerText = text);
+
+      try {
+        const { ShellSdk, SHELL_EVENTS } = FSMShell;
+        console.log('using ShellSdk version', ShellSdk.VERSION);
+
+        if (!ShellSdk.isInsideShell()) {
+          throw new Error('unable to reach shell eventAPI');
+        }
+
+        const shellSdk = ShellSdk.init(parent, '*');
+
+        // get context
+        shellSdk.emit(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, {
+          clientIdentifier: 'fsm_equipmment_search_by_ecenta',
+        });
+
+        shellSdk.on(SHELL_EVENTS.Version1.REQUIRE_CONTEXT, (event) => {
+          const {
+            account,
+            accountId,
+            company,
+            companyId,
+            user,
+            userId,
+            selectedLocale,
+          } = JSON.parse(event);
+          updateUI(`Hi ${user} / ${account} / ${company}!`);
+        });
+      } catch (e) {
+        updateUI(`Exception: ${e.message}`);
+      }
+    </script>
+  </body>
+</html>
