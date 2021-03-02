@@ -6,7 +6,7 @@ This is a preview for a coming feature for searching performent for equipments i
 ## to run the demo
 <table>
  <tr>
-  <td><a href="index.html">BASF_search_demo</a></td>
+  <td><a href="/index.html">BASF_search_demo</a></td>
  </tr>
 </table>
 
