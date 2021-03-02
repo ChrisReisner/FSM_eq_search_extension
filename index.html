@@ -14,9 +14,8 @@
 		<h2 class="fd-title fd-title--h2" id="header">No selected
 			activities</h2>
 	</div>
-	<div>
-      <div class="search" id="info">No query possible</h2>
-    </div>
+      <div class="search" id="info">No query possible</div>
+ 
 	<hr>
 	<div class="content" id="content">
 		No found contend
@@ -25,25 +24,21 @@
 	<div class="debug" id="debug">
 		No found contend
 		</div>
-		
-	
-		
-		<script src="https://unpkg.com/fsm-shell"></script>
+				<script src="https://unpkg.com/fsm-shell"></script>
 		<script src="helpers.js "></script>
 		<script>
   const { ShellSdk, SHELL_EVENTS } = FSMShell;
 
       const updateUI = (text) =>
         (document.querySelectorAll('#info')[0].innerText = text);
-        const debugUI = (text) =>
-        (document.querySelectorAll('#debug')[0].innerText = text);
+        //const debugUI = (text) => (document.querySelectorAll('#debug')[0].innerText = text);
         const initText = 'loading';
-        debugUi(initText);
+        //debugUi(initText);
         updateUi(initText);
       try {
         const { ShellSdk, SHELL_EVENTS } = FSMShell;
         console.log('using ShellSdk version', ShellSdk.VERSION);
-        debugUi('using ShellSdk version', ShellSdk.VERSION);
+       // debugUi('using ShellSdk version', ShellSdk.VERSION);
         updateUi(initText);
         
      // Display an error message if extension does not run within shell
@@ -80,9 +75,6 @@
         });
         
        
-
-        
-        
         
       } catch (e) {
         updateUI(`Exception: ${e.message}`);
